@@ -6,7 +6,8 @@ const typeDefs = gql`
   }
 
   type SeriesResponse {
-    status: String
+    statusCode: String
+    statusMessage: String
     data: [Series]
   }
 

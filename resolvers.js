@@ -12,15 +12,21 @@ const resolvers = {
             offset: offset,
           },
         });
-        console.log("🚀 ~ response: ====>", response);
+
+        // 🔑 Manual error handling
+        if (response.data.status !== "success") {
+          throw new Error(response.data.reason);
+        }
 
         return {
-          status: response.data.status,
+          statusCode: response.status,
+          statusMessage: "Success",
           data: response.data.data,
         };
       } catch (error) {
         return {
-          status: "failure",
+          statusCode: "400",
+          statusMessage: error.message,
           data: [],
         };
       }
