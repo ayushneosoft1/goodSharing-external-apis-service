@@ -1,6 +1,15 @@
 import gql from "graphql-tag";
 
 const typeDefs = gql`
+  type Query {
+    getSeries(offset: Int): SeriesResponse
+  }
+
+  type SeriesResponse {
+    status: String
+    data: [Series]
+  }
+
   type Series {
     id: String
     name: String
@@ -11,15 +20,6 @@ const typeDefs = gql`
     test: Int
     squads: Int
     matches: Int
-  }
-
-  type SeriesResponse {
-    status: String
-    data: [Series]
-  }
-
-  type Query {
-    getSeries(offset: Int): SeriesResponse
   }
 `;
 
